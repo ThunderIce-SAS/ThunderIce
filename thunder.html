@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Thunder Ice - Helados energizantes naturales con sabores únicos. Productos 100% naturales para atletas y estudiantes." />
+    <title>Thunder Inc - Innovación y Energía Natural</title>
+  </head>
+  <style>
+    /* ===========================
+   VARIABLES Y COLORES
+   =========================== */
+:root {
+  --ice-blue: #0a7ea4;
+  --ice-blue-dark: #054a68;
+  --ice-blue-light: #1a9bc4;
+  --energy-yellow: #ffd700;
+  --energy-yellow-dark: #ffb700;
+  --dark-bg: #0f1419;
+  --light-bg: #f8f9fa;
+  --text-dark: #1a1a1a;
+  --text-light: #ffffff;
+  --border-color: #e0e0e0;
+  --shadow: 0 4px 15px rgba(10, 126, 164, 0.1);
+  --shadow-hover: 0 8px 25px rgba(10, 126, 164, 0.15);
+}
+
+/* ===========================
+   RESET Y ESTILOS GLOBALES
+   =========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-dark);
+  background-color: var(--light-bg);
+  overflow-x: hidden;
+}
+
+/* ===========================
+   LOADER
+   =========================== */
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--dark-bg) 0%, var(--ice-blue-dark) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeOut 0.6s ease-out 1.4s forwards;
+}
+
+.loader-spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  border-top: 4px solid var(--energy-yellow);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* ===========================
+   NAVBAR
+   =========================== */
+.navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--ice-blue) 0%, var(--energy-yellow) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+.logo-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(10, 126, 164, 0.2);
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 3rem;
+}
+
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--ice-blue), var(--energy-yellow));
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-link:hover {
+  color: var(--ice-blue);
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  gap: 6px;
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: var(--ice-blue);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* ===========================
+   HERO SECTION
+   =========================== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 2rem;
+  background: linear-gradient(135deg, #ffffff 0%, var(--light-bg) 100%);
+}
+
+.hero-bg-animation {
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(10, 126, 164, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 20s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(50px, -50px) scale(1.1);
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  text-align: center;
+  animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  background: linear-gradient(135deg, var(--ice-blue) 0%, var(--ice-blue-light) 100%);
+  color: var(--text-light);
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  animation: slideUp 0.8s ease-out 0.2s backwards;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
+  animation: slideUp 0.8s ease-out 0.4s backwards;
+}
+
+.hero-title .highlight {
+  display: block;
+  background: linear-gradient(135deg, var(--ice-blue) 0%, var(--energy-yellow) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 3rem;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: slideUp 0.8s ease-out 0.6s backwards;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: slideUp 0.8s ease-out 0.8s backwards;
+}
+
+/* ===========================
+   BOTONES
+   =========================== */
+.btn {
+  padding: 0.95rem 2rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--ice-blue) 0%, var(--ice-blue-light) 100%);
+  color: var(--text-light);
+  box-shadow: 0 4px 15px rgba(10, 126, 164, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(10, 126, 164, 0.5);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--ice-blue);
+  border: 2px solid var(--ice-blue);
+}
+
+.btn-secondary:hover {
+  background: var(--ice-blue);
+  color: var(--text-light);
+  transform: translateY(-2px);
+}
+
+/* ===========================
+   SECCIONES GENERALES
+   =========================== */
+.section {
+  padding: 5rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-alt {
+  background-color: var(--light-bg);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-badge {
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  background: linear-gradient(135deg, rgba(10, 126, 164, 0.1) 0%, rgba(255, 215, 0, 0.1) 100%);
+  color: var(--ice-blue);
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--ice-blue) 0%, var(--ice-blue-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-subtitle,
+.section-description {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* ===========================
+   ESTADÍSTICAS
+   =========================== */
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.stat-card {
+  padding: 2.5rem;
+  background: white;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  border-top: 4px solid var(--ice-blue);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(10, 126, 164, 0.05) 0%, rgba(255, 215, 0, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+}
+
+.stat-card:hover::before {
+  opacity: 1;
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--ice-blue) 0%, var(--energy-yellow) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  color: #666;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+/* ===========================
+   ABOUT SECTION
+   =========================== */
+.about-container {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.about-text {
+  font-size: 1.1rem;
+  color: #666;
+  line-height: 1.9;
+  margin-bottom: 1.5rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.about-card {
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: all 0.3s ease;
+  border-bottom: 4px solid transparent;
+}
+
+.about-card:nth-child(1) {
+  border-bottom-color: var(--ice-blue);
+}
+
+.about-card:nth-child(2) {
+  border-bottom-color: var(--energy-yellow);
+}
+
+.about-card:nth-child(3) {
+  border-bottom-color: var(--ice-blue-light);
+}
+
+.about-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+}
+
+.about-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.about-card h4 {
+  font-size: 1.5rem;
+  color: var(--ice-blue);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.about-card p {
+  color: #666;
+  line-height: 1.8;
+}
+
+/* ===========================
+   COMPROMISOS
+   =========================== */
+.commit-section {
+  background: white;
+  padding: 5rem 2rem;
+  margin: 3rem 0;
+}
+
+.commit-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.commit-intro {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 3rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.commit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.commit-card {
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(10, 126, 164, 0.05) 0%, rgba(255, 215, 0, 0.05) 100%);
+  border: 1px solid rgba(10, 126, 164, 0.1);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.commit-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--ice-blue), var(--energy-yellow));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.commit-card:hover::before {
+  transform: scaleX(1);
+}
+
+.commit-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-4px);
+}
+
+.commit-title {
+  font-size: 1.3rem;
+  color: var(--ice-blue);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.commit-text {
+  color: #666;
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+/* ===========================
+   PRODUCTOS
+   =========================== */
+.services-container {
+  margin-bottom: 3rem;
+}
+
+.services-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.tab-button {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--border-color);
+  background: white;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  color: var(--text-dark);
+}
+
+.tab-button:hover,
+.tab-button.active {
+  border-color: var(--ice-blue);
+  background: linear-gradient(135deg, var(--ice-blue) 0%, var(--ice-blue-light) 100%);
+  color: var(--text-light);
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.5s ease;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.service-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  border-left: 5px solid var(--ice-blue);
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+}
+
+.service-image {
+  height: 100%;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(10, 126, 164, 0.1) 0%, rgba(255, 215, 0, 0.1) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .product-img {
+  transform: scale(1.05);
+}
+
+.service-content {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.service-title {
+  font-size: 1.8rem;
+  color: var(--ice-blue);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.service-description {
+  color: #666;
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+.service-features {
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.service-features li {
+  padding: 0.5rem 0;
+  color: #666;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.service-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--energy-yellow);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.service-price {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--energy-yellow);
+  margin-bottom: 1.5rem;
+}
+
+/* ===========================
+   CONTACTO
+   =========================== */
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.contact-info {
+  padding: 2rem;
+}
+
+.contact-info h3 {
+  font-size: 1.5rem;
+  color: var(--ice-blue);
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.contact-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  align-items: flex-start;
+}
+
+.contact-icon {
+  font-size: 1.5rem;
+  min-width: 40px;
+}
+
+.contact-item a {
+  color: var(--ice-blue);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+  color: var(--energy-yellow);
+  text-decoration: underline;
+}
+
+.contact-map {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin-bottom: 2rem;
+  animation: slideUp 0.8s ease-out;
+}
+
+.contact-form {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.85rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--ice-blue);
+  box-shadow: 0 0 0 3px rgba(10, 126, 164, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* ===========================
+   FOOTER
+   =========================== */
+.footer {
+  background: linear-gradient(135deg, var(--ice-blue-dark) 0%, var(--dark-bg) 100%);
+  color: var(--text-light);
+  padding: 3rem 2rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  color: var(--energy-yellow);
+  font-weight: 700;
+}
+
+.footer-section p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section li {
+  margin-bottom: 0.75rem;
+}
+
+.footer-section a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: var(--energy-yellow);
+  transform: translateX(5px);
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.social-links a {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  background: var(--energy-yellow);
+  color: var(--dark-bg);
+  border-color: var(--energy-yellow);
+  transform: translateY(-3px);
+}
+
+.footer-section form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.footer-section input {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.footer-section input::placeholder {
+  color: #999;
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ===========================
+   ANIMACIONES
+   =========================== */
+.fade-in {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-title .highlight {
+    font-size: 1.8rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .nav-menu {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .service-card {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .stat-card {
+    padding: 1.5rem;
+  }
+
+  .stat-number {
+    font-size: 2.2rem;
+  }
+
+  .section {
+    padding: 3rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .hero-title .highlight {
+    font-size: 1.4rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .nav-container {
+    padding: 1rem;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .about-grid,
+  .commit-grid,
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+}
+  </style>
+
+  <body>
+    <!-- LOADER -->
+    <div class="loader" id="loader">
+      <div class="loader-spinner"></div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
+      <div class="nav-container">
+        <div class="logo">
+          <img src="Thunder.logo.jpg" alt="Thunder Inc Logo" class="logo-img" />
+          <span>Thunder Ice</span>
+        </div>
+
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+          <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+          <li><a href="#productos" class="nav-link">Productos</a></li>
+          <li><a href="#contacto" class="nav-link">Contacto</a></li>
+        </ul>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero" id="inicio">
+      <div class="hero-bg-animation"></div>
+
+      <div class="hero-content">
+        <span class="hero-badge">⚡ Bienvenido a Thunder Ice</span>
+
+        <h1 class="hero-title">
+          La energía que necesitas
+          <span class="highlight">Productos 100% Naturales</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Líderes en productos energizantes naturales con sabores únicos, que te dan ese boom que necesitas en tu día a día.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#productos" class="btn btn-primary">Ver productos</a>
+          <a href="#nosotros" class="btn btn-secondary">Conocer más</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- STATISTICS SECTION -->
+    <section class="section section-alt" aria-labelledby="stats-title">
+      <div class="container stats-container">
+        <h2 id="stats-title" class="visually-hidden">Estadísticas de Thunder Ice</h2>
+        
+        <div class="stat-card fade-in">
+          <div class="stat-number">+1000</div>
+          <p class="stat-label">Ventas realizadas</p>
+        </div>
+
+        <div class="stat-card fade-in">
+          <div class="stat-number">+10</div>
+          <p class="stat-label">Empresas que confían en nosotros</p>
+        </div>
+
+        <div class="stat-card fade-in">
+          <div class="stat-number">+99</div>
+          <p class="stat-label">Clientes Satisfechos</p>
+        </div>
+
+        <div class="stat-card fade-in">
+          <div class="stat-number">1</div>
+          <p class="stat-label">Años en el mercado</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section" id="nosotros" aria-labelledby="about-title">
+      <div class="about-container">
+        <h2 id="about-title" class="section-title">¿Quiénes Somos?</h2>
+
+        <p class="about-text">
+          Thunder Ice es una pequeña empresa colombiana dedicada a la innovación en productos energéticos. Nuestro objetivo es ofrecer alternativas refrescantes, naturales y efectivas para estudiantes, deportistas y personas que buscan un impulso extra en su día a día.
+        </p>
+
+        <p class="about-text">
+          Comenzamos con una idea simple: crear productos únicos, deliciosos y con ingredientes que aporten energía real, basándonos en experiencias propias en deportes, en las cuales identificamos la necesidad de impulsos energéticos naturales. Hoy, seguimos creciendo con dedicación, creatividad y compromiso hacia nuestros clientes, llevando la energía a otro nivel a través de geles, bebidas y snacks funcionales.
+        </p>
+      </div>
+
+      <div class="container">
+        <header class="section-header fade-in">
+          <span class="section-badge">Sobre Nosotros</span>
+          <h3 class="section-subtitle">¿Por qué elegir Thunder Ice?</h3>
+          <p class="section-description">
+            Thunder Ice es la combinación perfecta entre sabor y energía real, creada con ingredientes naturales y fórmulas pensadas para el rendimiento diario. Elegirnos significa obtener una experiencia única, productos confiables, innovadores y diseñados para impulsar tu enfoque, fuerza y productividad en cualquier momento.
+          </p>
+        </header>
+
+        <div class="about-grid">
+          <article class="about-card fade-in">
+            <div class="about-icon" aria-hidden="true">🚀</div>
+            <h4>Misión</h4>
+            <p>
+              Ofrecer helados energizantes a base de productos naturales como frutas y cafeína, promoviendo la disciplina deportiva mediante el consumo responsable de energizantes, ofreciendo un producto servicio de calidad.
+            </p>
+          </article>
+
+          <article class="about-card fade-in">
+            <div class="about-icon" aria-hidden="true">🎯</div>
+            <h4>Visión</h4>
+            <p>
+              Ser la empresa líder en el mercado de helados energizantes naturales, promoviendo un estilo de vida saludable, continua, responsable y sostenible a nivel distrital y nacional para el año 2035.
+            </p>
+          </article>
+
+          <article class="about-card fade-in">
+            <div class="about-icon" aria-hidden="true">💎</div>
+            <h4>Valores</h4>
+            <p>Perseverancia, Lealtad, Disciplina, Responsabilidad</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMITMENTS SECTION -->
+    <section class="commit-section" id="compromisos" aria-labelledby="commit-title">
+      <div class="commit-container">
+        <h2 id="commit-title" class="section-title">Nuestros Compromisos</h2>
+
+        <p class="commit-intro">
+          En Thunder Ice creemos en un crecimiento responsable. Cada producto que desarrollamos refleja nuestro compromiso con el medio ambiente, la calidad y el bienestar de nuestra comunidad.
+        </p>
+
+        <div class="commit-grid">
+          <article class="commit-card">
+            <h3 class="commit-title">Sostenibilidad Ambiental</h3>
+            <p class="commit-text">
+              Optimizamos nuestros procesos para reducir el consumo de recursos y minimizar el impacto ambiental, desde los empaques hasta la producción.
+            </p>
+          </article>
+
+          <article class="commit-card">
+            <h3 class="commit-title">Ingredientes Naturales</h3>
+            <p class="commit-text">
+              Trabajamos con ingredientes de origen natural y proveedores locales para apoyar la agricultura responsable y disminuir la huella ecológica.
+            </p>
+          </article>
+
+          <article class="commit-card">
+            <h3 class="commit-title">Producción Responsable</h3>
+            <p class="commit-text">
+              Nuestras fórmulas y procesos cumplen con estándares de calidad, seguridad y transparencia, garantizando productos confiables y saludables.
+            </p>
+          </article>
+
+          <article class="commit-card">
+            <h3 class="commit-title">Economía Circular</h3>
+            <p class="commit-text">
+              Fomentamos el reciclaje de empaques y buscamos constantemente nuevos materiales biodegradables y reutilizables para nuestros productos.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS SECTION -->
+    <section class="section section-alt" id="productos" aria-labelledby="products-title">
+      <div class="container">
+        <header class="section-header fade-in">
+          <span class="section-badge">Nuestros Productos</span>
+          <h2 id="products-title" class="section-title">Energía natural para cada día</h2>
+          <p class="section-subtitle">
+            Altamente nutritivo, delicioso y energético.
+          </p>
+        </header>
+
+        <!-- PRODUCTO 1: FRESA -->
+        <div class="services-container">
+          <div class="services-tabs" role="tablist">
+            <button class="tab-button active" data-tab="thunder-fresa" role="tab" aria-selected="true">
+              Thunder Ice Fresa
+            </button>
+          </div>
+
+          <div id="thunder-fresa" class="tab-content active" role="tabpanel">
+            <div class="services-grid">
+              <article class="service-card fade-in">
+                <div class="service-image">
+                  <img
+                    src="Paleta Fresa.png"
+                    alt="Thunder Ice Fresa - Helado energizante de fresa"
+                    class="product-img"
+                  />
+                </div>
+
+                <div class="service-content">
+                  <h3 class="service-title">
+                    Thunder Ice Fresa - Energía en cada bocado
+                  </h3>
+
+                  <p class="service-description">
+                    Helado energizante hecho a base de fresas perfectamente seleccionadas, cafeína natural e ingredientes 100% naturales.
+                  </p>
+
+                  <ul class="service-features">
+                    <li>Energía natural</li>
+                    <li>Ingredientes naturales</li>
+                    <li>Textura suave</li>
+                    <li>Perfecto para atletas y estudiantes</li>
+                  </ul>
+
+                  <div class="service-price" aria-label="Precio">$4.200</div>
+                  <a href="#contacto" class="btn btn-primary">Comprar</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRODUCTO 2: COCO -->
+        <div class="services-container">
+          <div class="services-tabs" role="tablist">
+            <button class="tab-button active" data-tab="thunder-coco" role="tab" aria-selected="true">
+              Thunder Ice Coco
+            </button>
+          </div>
+
+          <div id="thunder-coco" class="tab-content active" role="tabpanel">
+            <div class="services-grid">
+              <article class="service-card fade-in">
+                <div class="service-image">
+                  <img
+                    src="Paleta Coco.png"
+                    alt="Thunder Ice Coco - Helado energizante de coco"
+                    class="product-img"
+                  />
+                </div>
+
+                <div class="service-content">
+                  <h3 class="service-title">
+                    Thunder Ice Coco - Energía en cada bocado
+                  </h3>
+
+                  <p class="service-description">
+                    Helado energizante hecho a base de coco perfectamente seleccionado, cafeína natural e ingredientes 100% naturales.
+                  </p>
+
+                  <ul class="service-features">
+                    <li>Energía natural</li>
+                    <li>Ingredientes naturales</li>
+                    <li>Textura suave</li>
+                    <li>Perfecto para atletas y estudiantes</li>
+                  </ul>
+
+                  <div class="service-price" aria-label="Precio">$4.200</div>
+                  <a href="#contacto" class="btn btn-primary">Comprar</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRODUCTO 3: MANGO -->
+        <div class="services-container">
+          <div class="services-tabs" role="tablist">
+            <button class="tab-button active" data-tab="thunder-mango" role="tab" aria-selected="true">
+              Thunder Ice Mango
+            </button>
+          </div>
+
+          <div id="thunder-mango" class="tab-content active" role="tabpanel">
+            <div class="services-grid">
+              <article class="service-card fade-in">
+                <div class="service-image">
+                  <img
+                    src="Paleta Mango.png"
+                    alt="Thunder Ice Mango - Helado energizante de mango"
+                    class="product-img"
+                  />
+                </div>
+
+                <div class="service-content">
+                  <h3 class="service-title">
+                    Thunder Ice Mango - Energía en cada bocado
+                  </h3>
+
+                  <p class="service-description">
+                    Helado energizante hecho a base de mango perfectamente seleccionado, cafeína natural e ingredientes 100% naturales.
+                  </p>
+
+                  <ul class="service-features">
+                    <li>Energía natural</li>
+                    <li>Ingredientes naturales</li>
+                    <li>Textura suave</li>
+                    <li>Perfecto para atletas y estudiantes</li>
+                  </ul>
+
+                  <div class="service-price" aria-label="Precio">$4.200</div>
+                  <a href="#contacto" class="btn btn-primary">Comprar</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRODUCTO 4: MORA -->
+        <div class="services-container">
+          <div class="services-tabs" role="tablist">
+            <button class="tab-button active" data-tab="thunder-mora" role="tab" aria-selected="true">
+              Thunder Ice Mora
+            </button>
+          </div>
+
+          <div id="thunder-mora" class="tab-content active" role="tabpanel">
+            <div class="services-grid">
+              <article class="service-card fade-in">
+                <div class="service-image">
+                  <img
+                    src="Paleta Mora.png"
+                    alt="Thunder Ice Mora - Helado energizante de mora"
+                    class="product-img"
+                  />
+                </div>
+
+                <div class="service-content">
+                  <h3 class="service-title">
+                    Thunder Ice Mora - Energía en cada bocado
+                  </h3>
+
+                  <p class="service-description">
+                    Helado energizante hecho a base de mora perfectamente seleccionada, cafeína natural e ingredientes 100% naturales.
+                  </p>
+
+                  <ul class="service-features">
+                    <li>Energía natural</li>
+                    <li>Ingredientes naturales</li>
+                    <li>Textura suave</li>
+                    <li>Perfecto para atletas y estudiantes</li>
+                  </ul>
+
+                  <div class="service-price" aria-label="Precio">$4.200</div>
+                  <a href="#contacto" class="btn btn-primary">Comprar</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRODUCTO 5: FRUTOS ROJOS -->
+        <div class="services-container">
+          <div class="services-tabs" role="tablist">
+            <button class="tab-button active" data-tab="thunder-frutos" role="tab" aria-selected="true">
+              Thunder Ice Frutos Rojos
+            </button>
+          </div>
+
+          <div id="thunder-frutos" class="tab-content active" role="tabpanel">
+            <div class="services-grid">
+              <article class="service-card fade-in">
+                <div class="service-image">
+                  <img
+                    src="Paleta Frutos Rojos.png"
+                    alt="Thunder Ice Frutos Rojos - Helado energizante de frutos rojos"
+                    class="product-img"
+                  />
+                </div>
+
+                <div class="service-content">
+                  <h3 class="service-title">
+                    Thunder Ice Frutos Rojos - Energía en cada bocado
+                  </h3>
+
+                  <p class="service-description">
+                    Helado energizante hecho a base de frutos rojos perfectamente seleccionados, cafeína natural e ingredientes 100% naturales.
+                  </p>
+
+                  <ul class="service-features">
+                    <li>Energía natural</li>
+                    <li>Ingredientes naturales</li>
+                    <li>Textura suave</li>
+                    <li>Perfecto para atletas y estudiantes</li>
+                  </ul>
+
+                  <div class="service-price" aria-label="Precio">$4.200</div>
+                  <a href="#contacto" class="btn btn-primary">Comprar</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="section section-alt" id="contacto" aria-labelledby="contact-title">
+      <div class="container">
+        <header class="section-header fade-in">
+          <span class="section-badge">Contacto</span>
+          <h2 id="contact-title" class="section-title">Despierta tu potencial</h2>
+          <p class="section-subtitle">
+            ¿Tienes preguntas? Estamos aquí para ayudarte.
+          </p>
+        </header>
+
+        <div class="contact-container">
+          <aside class="contact-info fade-in">
+            <h3>Información de contacto</h3>
+
+            <address class="contact-item">
+              <span class="contact-icon" aria-hidden="true">📍</span>
+              <div>
+                <strong>Dirección:</strong><br />
+                Cra. 81c # 45B-8
+              </div>
+            </address>
+
+            <div class="contact-map fade-in">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.8374450580973!2d-74.17261092592831!3d4.623074342327512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9e87447c5d73%3A0x7e92a50226a5af70!2zQ3JhLiA4MWMgIyA0NUItOCwgS2VubmVkeSwgQm9nb3TDoSwgRC5DLiwgQm9nb3TDoSwgQm9nb3TDoSwgRC5DLg!5e0!3m2!1ses-419!2sco!4v1764608425292!5m2!1ses-419!2sco"
+                height="350"
+                style="border:0; border-radius: 10px; width: 100%;"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Ubicación de Thunder Ice en Google Maps">
+              </iframe>
+            </div>
+
+            <div class="contact-item">
+              <span class="contact-icon" aria-hidden="true">📞</span>
+              <div>
+                <strong>Teléfono:</strong><br />
+                <a href="tel:+573196498730">+57 319 6498730</a> / <a href="tel:+573229377798">+57 322 9377798</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <span class="contact-icon" aria-hidden="true">✉</span>
+              <div>
+                <strong>Email:</strong><br />
+                <a href="mailto:info@thunderice.com">info@thunderice.com</a>
+              </div>
+            </div>
+          </aside>
+
+          <form class="contact-form fade-in" id="contactForm" method="POST" action="/enviar-contacto">
+            <fieldset>
+              <legend class="visually-hidden">Formulario de contacto</legend>
+              
+              <div class="form-group">
+                <label for="name">Nombre <span aria-label="requerido">*</span></label>
+                <input type="text" id="name" name="name" required aria-required="true" />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Correo <span aria-label="requerido">*</span></label>
+                <input type="email" id="email" name="email" required aria-required="true" />
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Teléfono</label>
+                <input type="tel" id="phone" name="phone" />
+              </div>
+
+              <div class="form-group">
+                <label for="subject">Asunto <span aria-label="requerido">*</span></label>
+                <input type="text" id="subject" name="subject" required aria-required="true" />
+              </div>
+
+              <div class="form-group">
+                <label for="message">Mensaje <span aria-label="requerido">*</span></label>
+                <textarea id="message" name="message" rows="6" required aria-required="true"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary">
+                Enviar mensaje
+              </button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" role="contentinfo">
+      <div class="footer-content">
+        <section class="footer-section">
+          <h3>Thunder Inc</h3>
+          <p>El BOOM que necesitas para tu día.</p>
+
+          <nav class="social-links" aria-label="Redes sociales">
+            <a href="https://facebook.com/thunderice" aria-label="Facebook">f</a>
+            <a href="https://twitter.com/thunderice" aria-label="Twitter">𝕏</a>
+            <a href="https://linkedin.com/company/thunderice" aria-label="LinkedIn">in</a>
+            <a href="https://instagram.com/thunderice" aria-label="Instagram">ig</a>
+          </nav>
+        </section>
+
+        <section class="footer-section">
+          <h3>Enlaces</h3>
+          <nav>
+            <ul>
+              <li><a href="#inicio">Inicio</a></li>
+              <li><a href="#nosotros">Nosotros</a></li>
+              <li><a href="#productos">Productos</a></li>
+              <li><a href="#contacto">Contacto</a></li>
+            </ul>
+          </nav>
+        </section>
+
+        <section class="footer-section">
+          <h3>Productos</h3>
+          <nav>
+            <ul>
+              <li><a href="#productos">Thunder Ice Fresa</a></li>
+              <li><a href="#productos">Thunder Ice Coco</a></li>
+              <li><a href="#productos">Thunder Ice Mango</a></li>
+              <li><a href="#productos">Thunder Ice Mora</a></li>
+              <li><a href="#productos">Thunder Ice Frutos Rojos</a></li>
+            </ul>
+          </nav>
+        </section>
+
+        <section class="footer-section">
+          <h3>Newsletter</h3>
+          <form method="POST" action="/suscribir" aria-label="Formulario de suscripción">
+            <input type="email" name="email" placeholder="Tu email" required aria-label="Tu email" />
+            <button class="btn btn-primary" type="submit">Suscribir</button>
+          </form>
+        </section>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Thunder Inc. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+  </body>
+</html>
